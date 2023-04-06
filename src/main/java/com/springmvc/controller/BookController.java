@@ -12,12 +12,14 @@ import com.springmvc.domain.Book;
 import com.springmvc.service.BookService;
 
 @Controller
+@RequestMapping("/books")  //add
 public class BookController {
 
 	@Autowired
 	private BookService bookService;
 	
-	@RequestMapping(value="/books", method=RequestMethod.GET)
+//	@RequestMapping(value="/books", method=RequestMethod.GET)
+	@RequestMapping // modify
 	public String requestBookList(Model model) {
 		List<Book> list = bookService.getAllBookList();
 		model.addAttribute("bookList", list);
