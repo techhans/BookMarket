@@ -16,7 +16,7 @@ public class Example06Controller {
 		System.out.println("[DEBEG] Here are Example06Controller");
 		return "webpage05";
 		
-		 
+		  
 		
 		
 	}
