@@ -38,7 +38,7 @@ public class BookRepositoryImpl implements BookRepository {
 		book3.setDescription("어도비 CC 2020는 생애 첫 프로그램 언어로 C#을 시작하는 독자를 대상으로 한다. 특히 응용 프로그래머를 위한 C# 입문서로, C#을 사용하여 게임(유니티), 웹, 모바일, IOT등을 개발할 때 필요한 C# 기초 문법을 익히고 기본기를 탄탄하게 다지는 것이 목적이다");
 
 		book3.setPublisher("길벗");
-		book3.setCategory("IT전문서");
+		book3.setCategory("IT활용서");
 		book3.setUnitsInStock(1000);
 		book3.setReleaseDate("2020/05/29");
 		
@@ -56,6 +56,25 @@ public class BookRepositoryImpl implements BookRepository {
 	public List<Book> getAllBookList() {
 		// TODO Auto-generated method stub
 		return listOfBooks;
+	}
+
+
+
+
+	@Override
+	public List<Book> getBookListByCategory(String category) {
+		// TODO Auto-generated method stub
+		
+		List<Book> booksByCategory = new ArrayList<Book>();
+		for(int i=0;i<listOfBooks.size();i++) {
+			Book book = listOfBooks.get(i);
+
+			if(category.equalsIgnoreCase(book.getCategory())) {
+				System.out.println("[DEBUG][BookRepositoryImpl]="+book.getName());
+				booksByCategory.add(book);
+			}
+		}
+		return booksByCategory;
 	}
 
 }

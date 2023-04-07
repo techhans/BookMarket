@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>chap05</title>
+<title>chap06</title>
 </head>
 <body>
 	<p>${data}
-	<p>${data2}
 </body>
 </html>

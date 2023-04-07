@@ -5,12 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping; // add
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.springmvc.domain.Book;
 import com.springmvc.service.BookService;
-
-import org.springframework.web.bind.annotation.GetMapping; // add
 
 
 @Controller
@@ -30,13 +31,34 @@ public class BookController {
 		
 	}
 	
+
+//	public String requestAllBooks(Model model) {
 	@GetMapping("/all")
-	public String requestAllBooks(Model model) {
+	public ModelAndView requestAllBooks() {
+		ModelAndView mav = new ModelAndView();
 		List<Book> list = bookService.getAllBookList();
-		model.addAttribute("bookList", list);
-		System.out.println("[DEBUG] requestBookList RequestMapping all");		
-		return "books";
+		//model.addAttribute("bookList", list);
+		mav.addObject("bookList", list);
+		mav.setViewName("books");
+		System.out.println("[DEBUG] requestBookList RequestMapping all");
+		return mav;
+		
+		
+//		return "books";
 		
 	}
+	
+// add
+	@GetMapping("/{category}")
+	public String requestBooksByCategory(@PathVariable("category") String bookCategory, Model model) {
+		List<Book> booksByCategory = bookService.getBookListByCategory(bookCategory);
+		System.out.println("[DEBUG][BookController]="+booksByCategory);
+		model.addAttribute("bookList", booksByCategory);
+		return "books";
+	}
+	
+	
+	
+	
 	
 }
