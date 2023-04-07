@@ -15,7 +15,7 @@ public class Example06Controller {
 		model.addAttribute("data2", "웹 요청 URL은 /home/exam06 입니다");
 		System.out.println("[DEBEG] Here are Example06Controller");
 		return "webpage05";
-		
+		 
 		  
 		
 		
