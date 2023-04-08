@@ -14,9 +14,9 @@
             <div class="navbar-header">
                 <a class="navbar-brand" href="./home">Home</a>
             </div>
-        </div>
+        </div>   
     </nav>
-    <div class="jumbotron">
+    <div class="jumbotron"> 
         <div class="container">
             <h1 class="display-3">도서 목록</h1>
         </div>
