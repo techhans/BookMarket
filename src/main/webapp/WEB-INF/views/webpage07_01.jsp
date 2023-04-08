@@ -22,8 +22,8 @@
 		<p>성별 : <form:radiobutton path="sex" value="남성" />남성
 				<form:radiobutton path="sex" value="여성" />여성
 		<p>취미 : 독서<form:checkbox path="hobby" value="독서" />
-			운동<form:checkbox path="hobby" value="운동" />
-			영화<form:checkbox path="hobby" value="영화" />
+			     운동<form:checkbox path="hobby" value="운동" />
+			     영화<form:checkbox path="hobby" value="영화" />
 		<p><input type="submit" value="가입하기" />
 		   <input type="reset" value="다시쓰기" />
 	
