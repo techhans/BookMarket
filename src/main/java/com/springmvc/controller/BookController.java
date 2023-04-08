@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping; // add
 import org.springframework.web.bind.annotation.MatrixVariable;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.springmvc.domain.Book;
 import com.springmvc.service.BookService;
-
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/books")  //add
@@ -77,6 +77,13 @@ public class BookController {
 		model.addAttribute("book", bookById);
 		return "book";
 	}
+	
+//	@GetMapping("/add")
+	@RequestMapping(value="/add", method=RequestMethod.GET)
+	public String requestAddBookForm(Book book) {
+		return "addBook";
+	}
+	
 	
 	
 }
