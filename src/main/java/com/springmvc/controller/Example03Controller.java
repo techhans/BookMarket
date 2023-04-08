@@ -12,9 +12,9 @@ public class Example03Controller {
 	
 	@RequestMapping("/exam03/{bookId}")
 	public String requestMethod(@PathVariable String bookId, @MatrixVariable String category, Model model) {
-		System.out.println("[DEBUG] 책자 ID : "+bookId);
-		System.out.println("[DEBUG] 카테고리 : " + category);
-		model.addAttribute("data","책자 ID:"+bookId+"<br>"+"카테고리:"+category);
+		System.out.println("[DEBUG] 도서 ID : "+bookId);
+		System.out.println("[DEBUG] 도서 분야 : " + category);
+		model.addAttribute("data","도서 ID:"+bookId+"<br>"+"도서 분야:"+category);
 		 
 		return "webpage06";
 	}

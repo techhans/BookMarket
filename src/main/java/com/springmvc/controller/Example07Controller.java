@@ -13,11 +13,12 @@ public class Example07Controller {
 	@GetMapping("/exam07")
 	public String requestMethod(@RequestParam String id, Model model) {
 //		ModelAndView mav = new ModelAndView();
-//		mav.addObject("data", "ModelAndView ¿¹Á¦ÀÔ´Ï´Ù.");
-//		mav.addObject("data2","À¥ ¿äÃ» URLÀº /home/exam07 ÀÔ´Ï´Ù.");
+//		mav.addObject("data", "ModelAndView ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
+//		mav.addObject("data2","ï¿½ï¿½ ï¿½ï¿½Ã» URLï¿½ï¿½ /home/exam07 ï¿½Ô´Ï´ï¿½.");
 //		mav.setViewName("webpage05");
-		model.addAttribute("data", "µµ¼­ID :"+id);
-		System.out.println("[DEBEG] µµ¼­ID :"+id);
+		System.out.println("[DEBEG] ë„ì„œ ID :"+id);		
+		model.addAttribute("data", "ë„ì„œ ID :"+id);
+
 		return "webpage06";
 	
 //		return mav;

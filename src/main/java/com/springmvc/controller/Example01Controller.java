@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class Example01Controller {
 	@GetMapping("/exam01/{bookId}")
 	public String requestMethod(@PathVariable String bookId, Model model) {
-		System.out.println("[DEBUG] µµº≠ ID : "+bookId);
-		model.addAttribute("data", "µµº≠ ID : "+bookId);
+		System.out.println("[DEBUG] ÎèÑÏÑú ID : "+bookId);
+		model.addAttribute("data", "ÎèÑÏÑú ID : "+bookId);
 		return "webpage06";
 	}
 	

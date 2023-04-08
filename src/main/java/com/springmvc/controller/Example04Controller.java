@@ -13,9 +13,9 @@ public class Example04Controller {
 	@GetMapping("/exam04/{bookId}/category/{category}")
 	public String requestMethod(@MatrixVariable(value="publisher", pathVar="bookId") String q1,
 			@MatrixVariable(value="publisher", pathVar="category") String q2, Model model) {
-		System.out.println("[DEBUG] ÃâÆÇ»ç1 : " + q1);
-		System.out.println("[DEBUG] ÃâÆÇ»ç2 : " + q2);
-		model.addAttribute("data","ÃâÆÇ»ç1:"+q1+"<br>"+"ÃâÆÇ»ç2:"+q2);
+		System.out.println("[DEBUG] ì¶œíŒì‚¬1 : " + q1);
+		System.out.println("[DEBUG] ì¶œíŒì‚¬2 : " + q2);
+		model.addAttribute("data","ì¶œíŒì‚¬1:"+q1+"<br>"+"ì¶œíŒì‚¬2:"+q2);
 		return "webpage06";
 		
 

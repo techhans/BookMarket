@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class Example05Controller {
 	
 	@GetMapping("/exam05/{bookId}")
-	public String requestMethod(@MatrixVariable(required=false, defaultValue="±æ¹ş") String q, Model model) {
-		System.out.println("[DEBUG] ÃâÆÇ»ç : "+q);
-		model.addAttribute("data", "ÃâÆÇ»ç:"+q);
+	public String requestMethod(@MatrixVariable(required=false, defaultValue="ê¸¸ë²—") String q, Model model) {
+		System.out.println("[DEBUG] ì¶œíŒì‚¬ : "+q);
+		model.addAttribute("data", "ì¶œíŒì‚¬ : "+q);
 		return "webpage06";
 	}
 	

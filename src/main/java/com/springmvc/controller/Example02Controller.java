@@ -12,9 +12,9 @@ public class Example02Controller {
 	
 	@GetMapping("/exam02/{category}/publisher/{publisher}")
 	public String request(@PathVariable String category, @PathVariable String publisher, Model model) {
-		System.out.println("[DEBUG] µµ¼­ ºĞ¾ß : "+category);
-		System.out.println("[DEUBG] ÃâÆÇ»ç : "+publisher);
-		model.addAttribute("data", "µµ¼­ ºĞ¾ß : "+category + "<br>"+"ÃâÆÇ»ç : "+publisher);
+		System.out.println("[DEBUG] ë„ì„œë¶„ì•¼ : "+category);
+		System.out.println("[DEUBG] ì¶œíŒì‚¬ : "+publisher);
+		model.addAttribute("data","ë„ì„œë¶„ì•¼ : "+category + "<br>"+"ì¶œíŒì‚¬ : "+publisher);
 		return "webpage06";
 		
 	}
