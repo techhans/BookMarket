@@ -12,10 +12,10 @@ public class Example03Controller {
 	
 	@RequestMapping("/exam03/{bookId}")
 	public String requestMethod(@PathVariable String bookId, @MatrixVariable String category, Model model) {
-		System.out.println("[DEBUG] µµº≠ ID : "+bookId);
-		System.out.println("[DEBUG] µµº≠ ∫–æﬂ : " + category);
-		model.addAttribute("data","µµº≠ID:"+bookId+"<br>"+"µµº≠∫–æﬂ:"+category);
-		
+		System.out.println("[DEBUG] Ï±ÖÏûê ID : "+bookId);
+		System.out.println("[DEBUG] Ïπ¥ÌÖåÍ≥†Î¶¨ : " + category);
+		model.addAttribute("data","Ï±ÖÏûê ID:"+bookId+"<br>"+"Ïπ¥ÌÖåÍ≥†Î¶¨:"+category);
+		 
 		return "webpage06";
 	}
 	
