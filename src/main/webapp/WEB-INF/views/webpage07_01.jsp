@@ -10,7 +10,7 @@
 	<form:form modelAttribute="member" method="post">
 		<p>아이디 : <form:input path="id" name="id" />
 		<p>비밀번호 : <form:password path="password" />
-		<p>거주지 : 
+		<p>거주지 :   
 		    <form:select path="city">
 			<form:option value="서울시">서울시</form:option>
 			<form:option value="경기도">경기도</form:option>
