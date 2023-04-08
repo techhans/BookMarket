@@ -22,7 +22,7 @@
         </div>
     </div>
     <div class="container">
-        <div class="row" align="center">
+        <div class="row" align="center"> 
             <c:forEach items="${bookList}" var="book"> 
                 <div class="col-md-4">
                     <h3>${book.name}</h3>
