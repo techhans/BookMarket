@@ -19,7 +19,7 @@
         <div class="container">
             <h1 class="display-3">도서 정보</h1>
         </div>
-    </div>
+    </div> 
 
     <div class="container">
         <div class="row">
