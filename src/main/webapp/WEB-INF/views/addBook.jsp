@@ -23,7 +23,7 @@
 
     <div class="container">
       
-       <form:form modelAttribute = "book" class="form-horizontal" >
+       <form:form modelAttribute = "NewBook" class="form-horizontal" >
         <fieldset>
         <legend>${addTitle}</legend>
         <div class="form-group row">

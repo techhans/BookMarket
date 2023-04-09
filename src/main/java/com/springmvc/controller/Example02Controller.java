@@ -23,17 +23,18 @@ public class Example02Controller {
 	}
 	
 	@PostMapping("/member")
-	public String submitForm(@ModelAttribute Member member ,Model model) {
+//	public String submitForm(@ModelAttribute Member member ,Model model) {
+	public String submitForm(Member group ,Model model) {	
 		System.out.println("[DEBUG] @PostMapping-----------------------");
-		System.out.println("[DEBUG] 아이디 : "+member.getId());
-		System.out.println("[DEBUG] 비밀번호 : "+member.getPassword());
-		System.out.println("[DEBUG] 거주지 : "+member.getCity());
-		System.out.println("[DEBUG] 성 별 : "+member.getSex());
+		System.out.println("[DEBUG] 아이디 : "+group.getId());
+		System.out.println("[DEBUG] 비밀번호 : "+group.getPassword());
+		System.out.println("[DEBUG] 거주지 : "+group.getCity());
+		System.out.println("[DEBUG] 성 별 : "+group.getSex());
 		System.out.println("[DEBUG] 취 미 : ");
-		for(int i=0;i<member.getHobby().length;i++) {
-			System.out.println("["+member.getHobby()[i]+"]");
+		for(int i=0;i<group.getHobby().length;i++) {
+			System.out.println("["+group.getHobby()[i]+"]");
 		}
-		model.addAttribute("member", member);
+		model.addAttribute("member", group);
 		return "webpage07_02";
 	}
 

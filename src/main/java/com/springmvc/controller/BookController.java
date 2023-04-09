@@ -9,9 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping; // add
 import org.springframework.web.bind.annotation.MatrixVariable;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -78,12 +79,22 @@ public class BookController {
 		return "book";
 	}
 	
-//	@GetMapping("/add")
-	@RequestMapping(value="/add", method=RequestMethod.GET)
-	public String requestAddBookForm(Book book) {
-		return "addBook";
+	@GetMapping("/add")
+//	@RequestMapping(value="/add", method=RequestMethod.GET)
+//	public String requestAddBookForm(Book book) {
+	public String requestAddBookForm(@ModelAttribute("NewBook") Book book) {
+		return "addBook"; 
 	}
 	
+	@PostMapping("/add")
+	public String submitAddNewBook(@ModelAttribute("NewBook") Book book) {
+		bookService.setNewBook(book);
+		return "redirect:/books";
+	}
 	
+	@ModelAttribute
+	public void addAttributes(Model model) {
+		model.addAttribute("addTitle", "신규 도서 등록");
+	}
 	
 }
