@@ -7,7 +7,9 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping; // add
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.MatrixVariable;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -97,4 +99,19 @@ public class BookController {
 		model.addAttribute("addTitle", "신규 도서 등록");
 	}
 	
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		binder.setAllowedFields("boodId"
+				,"name"
+				,"unitPrice"
+				,"author"
+				,"description"
+				,"publisher"
+				,"category"
+				,"unitsInStock"
+				,"totalPages"
+				,"releaseDate"
+				,"condition"
+				);
+	}
 }
