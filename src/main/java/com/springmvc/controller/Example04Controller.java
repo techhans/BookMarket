@@ -41,7 +41,7 @@ public class Example04Controller {
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 //		binder.setAllowedFields("id","password","city","sex");
-		binder.setDisallowedFields("hobby");
+//		binder.setDisallowedFields("hobby");
 	}
 	
 
