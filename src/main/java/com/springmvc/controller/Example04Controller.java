@@ -40,12 +40,23 @@ public class Example04Controller {
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-//		binder.setAllowedFields("id","password","city","sex");
+		binder.setAllowedFields("id","password","city","sex");
 //		binder.setDisallowedFields("hobby");
 	}
 	
-
-	
-	
+//	@GetMapping("/login")
+//	public String requestMethod(Model model) {
+//		return "loginform";
+//	}
+//	
+//	@GetMapping("/admin")
+//	public String requestMethod2(Model model) {
+//		return "webpage08_04";
+//	}
+//	
+//	@GetMapping("/logout")
+//	public String logout(Model model) {
+//		return "loginform";
+//	}
 	
 }

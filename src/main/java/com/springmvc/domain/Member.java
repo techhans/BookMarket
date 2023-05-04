@@ -2,6 +2,8 @@ package com.springmvc.domain;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Member {
 
 	public Member() {
@@ -51,5 +53,19 @@ public class Member {
 	private String [] hobby;
 	private Date birth;
 	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public MultipartFile getImageFile() {
+		return imageFile;
+	}
+	public void setImageFile(MultipartFile imageFile) {
+		this.imageFile = imageFile;
+	}
+	private String name;
+	private MultipartFile imageFile;
 	
 }

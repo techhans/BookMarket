@@ -1,5 +1,7 @@
 package com.springmvc.domain;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Book {
 	private String bookId;     // 도서ID
     private String name;      // 도서명
@@ -12,7 +14,18 @@ public class Book {
     private String releaseDate; // 출판일(월/년)
     private String condition;   // 신규 도서 or 중고 도서 or 전자책
     
-	public Book() {
+    public MultipartFile getBookImage() {
+		return bookImage;
+	}
+
+	public void setBookImage(MultipartFile bookImage) {
+		this.bookImage = bookImage;
+	}
+
+	private MultipartFile bookImage; // 도서 이미지
+    
+    
+    public Book() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

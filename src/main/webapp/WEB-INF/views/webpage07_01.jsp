@@ -26,8 +26,6 @@
 			     영화<form:checkbox path="hobby" value="영화" />
 		<p><input type="submit" value="가입하기" />
 		   <input type="reset" value="다시쓰기" />
-	
-			
 	</form:form>
 </body>
 </html>

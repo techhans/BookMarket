@@ -1,16 +1,24 @@
 package com.springmvc.controller;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.springmvc.domain.Member;
+import com.springmvc.exception.Example02Exception;
 
 @Controller
 //@RequestMapping("/home")
+@RequestMapping("/exam02")
 public class Example02Controller {
 	
 	@GetMapping("/exam02/{category}/publisher/{publisher}")
@@ -23,8 +31,8 @@ public class Example02Controller {
 	}
 	
 	@PostMapping("/member")
-//	public String submitForm(@ModelAttribute Member member ,Model model) {
-	public String submitForm(Member group ,Model model) {	
+    public String submitForm(@ModelAttribute Member group ,Model model) {
+//	public String submitForm(Member group ,Model model) {	
 		System.out.println("[DEBUG] @PostMapping-----------------------");
 		System.out.println("[DEBUG] 아이디 : "+group.getId());
 		System.out.println("[DEBUG] 비밀번호 : "+group.getPassword());
@@ -37,5 +45,46 @@ public class Example02Controller {
 		model.addAttribute("member", group);
 		return "webpage07_02";
 	}
-
+	
+	@GetMapping("/exam02")
+	public String requestMethod(Model model) {
+		return "webpage08_02";
+	}
+//	@GetMapping("/exam02")
+//	public void handleRequest() throws Exception{
+//		throw new Exception(new Example02Exception("Example02Exception 메시지입니다"));
+//
+//
+//	}
+	
+	@GetMapping("/admin/tag")
+	public String requestMethod2(Model model) {
+		return "webpage08_02";
+	}
+	
+	@GetMapping("/form")
+	public String requestForm() {
+		return "webpage09_01";
+	}
+	
+	@PostMapping("/form")
+	public String submitForm(MultipartHttpServletRequest request) {
+		String name = request.getParameter("name");
+		MultipartFile file = request.getFile("fileImage");
+		String filename = file.getOriginalFilename();
+		File f = new File("c:\\upload\\"+name+"_"+filename);
+		
+		try {
+			file.transferTo(f);
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+		return "webpage09_submit";
+	}
+	
+	
+	
+	
+	
+	
 }

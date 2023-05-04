@@ -13,7 +13,6 @@
 	<p>거주지 : ${member.city} 
 	<p>성 별 : ${member.sex} 
 	<p>취 미 : <c:forEach items="${member.hobby}" var="hobby">[<c:out value="${hobby}" />]</c:forEach> 
-		
 </body>
 
 </html>
