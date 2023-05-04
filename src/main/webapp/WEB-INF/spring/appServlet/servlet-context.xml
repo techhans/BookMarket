@@ -39,6 +39,15 @@
 	</beans:bean>
 	 -->
 	
+	<interceptors>
+		<beans:bean class="com.springmvc.interceptor.MonitoringInterceptor" />
+		<beans:bean class="com.springmvc.interceptor.AuditingInterceptor" />
+	</interceptors>
+	
+	
+	
+	
+	
 	
 	
 	

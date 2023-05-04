@@ -3,6 +3,8 @@ package com.springmvc.controller;
 import java.io.File;
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,12 +16,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.springmvc.domain.Member;
-import com.springmvc.exception.Example02Exception;
 
 @Controller
 //@RequestMapping("/home")
 @RequestMapping("/exam02")
 public class Example02Controller {
+	
+	public Logger logger = LoggerFactory.getLogger(Example02Controller.class);
 	
 	@GetMapping("/exam02/{category}/publisher/{publisher}")
 	public String request(@PathVariable String category, @PathVariable String publisher, Model model) {
@@ -48,7 +51,11 @@ public class Example02Controller {
 	
 	@GetMapping("/exam02")
 	public String requestMethod(Model model) {
-		return "webpage08_02";
+		logger.info("뷰페이지 webpage11_02 호출");
+		model.addAttribute("data", "인터셉터 예제입니다.");
+		model.addAttribute("data2", "웹 요청 URL은 /exam02 입니다.");
+		return "webpage11_02";		
+		//return "webpage08_02";
 	}
 //	@GetMapping("/exam02")
 //	public void handleRequest() throws Exception{

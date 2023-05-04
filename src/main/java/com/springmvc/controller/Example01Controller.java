@@ -3,6 +3,8 @@ package com.springmvc.controller;
 import java.io.File;
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,17 +23,30 @@ import com.springmvc.domain.Member;
 public class Example01Controller {
 	
 	
+	public static Logger logger = LoggerFactory.getLogger(Example01Controller.class);
+	
+	
+	
 //	@GetMapping("/exam01")
 //	public String requestMethod(Model model) {
 //		return "webpage08_01";
 //	}
-	@ResponseStatus(value=HttpStatus.BAD_REQUEST, reason="요청 실패하였습니다. 하하하")
+	//@ResponseStatus(value=HttpStatus.BAD_REQUEST, reason="요청 실패하였습니다. 하하하")
 	@GetMapping("/exam01")
 	public String requestMethod(Model model) {
-		System.out.println("chapter10_01 예제입니다.");
-		model.addAttribute("data", "@ResponseStatus 처리 예제입니다.");
 		
-		return "webpage08_01";
+		
+		logger.trace("trace message");
+		logger.debug("debug message");
+		logger.info("info message");
+		logger.warn("warn message");
+		logger.error("error message");
+		
+		
+		//System.out.println("chapter10_01 예제입니다.");
+		model.addAttribute("data", "@log4j 처리 예제입니다.");
+		
+		return "webpage11_01";
 		
 		
 	}

@@ -8,14 +8,17 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.MatrixVariable;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.springmvc.domain.Member;
+import com.springmvc.exception.Example03Exception;
 
 @Controller
 //@RequestMapping("/home")
@@ -31,10 +34,30 @@ public class Example03Controller {
 		return "webpage06";
 	}
 	
+//	@GetMapping("/exam03")
+//	public String showForm() {
+//		return "webpage07_03";
+//	}
+	
+	
 	@GetMapping("/exam03")
-	public String showForm() {
-		return "webpage07_03";
+	public void handleRequest() {
+		throw new Example03Exception();
 	}
+	
+	@ExceptionHandler(Example03Exception.class)
+	public ModelAndView handleException(Example03Exception ex) {
+		ModelAndView model = new ModelAndView();
+		model.addObject("errorMessage", ex.getErrMsg());
+		model.addObject("exception", ex);
+		model.setViewName("webpage10_03");
+		return model;
+	}
+	
+	
+	
+	
+	
 	
 	@ModelAttribute("title")
 	public String setTitle() {

@@ -3,18 +3,21 @@ package com.springmvc.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.MatrixVariable;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.springmvc.domain.Member;
+import com.springmvc.exception.Example03Exception;
 
-
-@Controller
 //@RequestMapping("/home")
+@Controller
+@ControllerAdvice(basePackages= {"com.springmvc"})
 public class Example04Controller {
 	@GetMapping("/exam04/{bookId}/category/{category}")
 	public String requestMethod(@MatrixVariable(value="publisher", pathVar="bookId") String q1,
@@ -59,4 +62,12 @@ public class Example04Controller {
 //		return "loginform";
 //	}
 	
+//	@ExceptionHandler(value= {RuntimeException.class})
+//	public ModelAndView handleException(Exception ex) {
+//		ModelAndView model = new ModelAndView();
+//		model.addObject("errorMessage", "Example04Exception 메시지입니다.");
+//		model.addObject("exception", ex);
+//		model.setViewName("webpage10_03");
+//		return model;
+//	}
 }
