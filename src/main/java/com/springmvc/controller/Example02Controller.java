@@ -2,6 +2,7 @@ package com.springmvc.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,14 +12,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.springmvc.domain.Member;
 
-@Controller
+//@Controller
 //@RequestMapping("/home")
+@RestController
 @RequestMapping("/exam02")
 public class Example02Controller {
 	
@@ -89,9 +93,30 @@ public class Example02Controller {
 		return "webpage09_submit";
 	}
 	
+//	@GetMapping
+//	public String showForm(Model model) {
+//		model.addAttribute("member", new Member());
+//		return "webpage13_02";
+//	}
 	
+//	@PostMapping
+//	public String submit(@Valid @ModelAttribute Member member, Errors errors) {
+//		if(errors.hasErrors()) {
+//			return "webpage13_02";
+//		}
+//		return "webpage13_result";
+//	}
+
+	@GetMapping("/json")
+	public String showForm() {
+		return "webpage14_02";
+	}
 	
+	@PostMapping("/test")
+	public void submit(@RequestBody HashMap<String, Object> map) {
+		System.out.println(map);
+	}
 	
-	
+
 	
 }

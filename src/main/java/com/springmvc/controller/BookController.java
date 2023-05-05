@@ -6,10 +6,12 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping; // add
@@ -25,9 +27,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.springmvc.domain.Book;
 import com.springmvc.exception.BookIdException;
-import com.springmvc.exception.CategoryException;
 import com.springmvc.exception.CommonException;
 import com.springmvc.service.BookService;
+import com.springmvc.validator.UnitsInStockValidator;
+
 
 @Controller
 @RequestMapping("/books")  //add
@@ -35,6 +38,12 @@ public class BookController {
 
 	@Autowired
 	private BookService bookService;
+
+	// UnitsInStockValidator 인스턴스 선언
+//	private UnitsInStockValidator unitsInStockValidator;
+	@Autowired	
+	private UnitsInStockValidator unitsInStockValidator;	
+//	private BookValidator bookValidator; 
 	
 //	@RequestMapping(value="/books", method=RequestMethod.GET)
 	@GetMapping // modify
@@ -107,8 +116,13 @@ public class BookController {
 	}
 	
 	@PostMapping("/add")
-	public String submitAddNewBook(@ModelAttribute("NewBook") Book book) {
+	public String submitAddNewBook(@Valid @ModelAttribute("NewBook") Book book, BindingResult result) {	
+//	public String submitAddNewBook(@ModelAttribute("NewBook") Book book) {
 		// add start
+		if(result.hasErrors()) {
+			return "addBook";
+		}
+		
 		MultipartFile bookImage = book.getBookImage();
 		
 		String saveName = bookImage.getOriginalFilename();
@@ -135,6 +149,8 @@ public class BookController {
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
+		binder.setValidator(unitsInStockValidator); // 생성한 bookValidator 설정
+//		binder.setValidator(unitsInStockValidator); // 생성한 unitsInStockValidator 설정		
         binder.setAllowedFields("bookId","name","unitPrice","author", "description", 
         "publisher","category","unitsInStock","totalPages", "releaseDate", "condition", "bookImage"); 
     }

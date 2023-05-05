@@ -5,55 +5,84 @@ import java.io.IOException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.springmvc.domain.Member;
 
 
 
 @Controller
 // @RequestMapping("/home")
+@RequestMapping("/exam01")
 public class Example01Controller {
 	
 	
 	public static Logger logger = LoggerFactory.getLogger(Example01Controller.class);
+/*	
+	@GetMapping
+	public String showForm(Model model) {
+		model.addAttribute("product", new Product());
+		return "webpage13_01";
+	}
+*/	
+	@GetMapping
+	public String showForm(Model model) {
+
+		return "webpage14_01";
+	}
+/*	
+	@PostMapping
+	public String submit(@Valid @ModelAttribute Product product, Errors errors) {
+		if(errors.hasErrors()) {
+			return "webpage13_01";
+		}
+		return "webpage13_result";
 	
+	}
+*/
+	@PostMapping
+	public String submit(@RequestBody String param, Model model) {
+		model.addAttribute("title", "@RequestBody로 정보 받기");
+		model.addAttribute("result", param);		
+
+		return "webpage14_result";
 	
+	}
 	
 //	@GetMapping("/exam01")
 //	public String requestMethod(Model model) {
 //		return "webpage08_01";
 //	}
 	//@ResponseStatus(value=HttpStatus.BAD_REQUEST, reason="요청 실패하였습니다. 하하하")
+//	@GetMapping("/exam01")
+//	public String requestMethod(Model model) {
+//		
+//		
+//		logger.trace("trace message");
+//		logger.debug("debug message");
+//		logger.info("info message");
+//		logger.warn("warn message");
+//		logger.error("error message");
+//		
+//		
+//		//System.out.println("chapter10_01 예제입니다.");
+//		model.addAttribute("data", "@log4j 처리 예제입니다.");
+//		
+//		return "webpage11_01";
+//		
+//		
+//	}
+	
 	@GetMapping("/exam01")
 	public String requestMethod(Model model) {
+		return "webpage12_01";
 		
-		
-		logger.trace("trace message");
-		logger.debug("debug message");
-		logger.info("info message");
-		logger.warn("warn message");
-		logger.error("error message");
-		
-		
-		//System.out.println("chapter10_01 예제입니다.");
-		model.addAttribute("data", "@log4j 처리 예제입니다.");
-		
-		return "webpage11_01";
-		
-		
-	}
-	
-	
-	
-	
+	}	
 	
 	@GetMapping("/admin/main")
 	public String requestMethod2(Model model) {
@@ -88,6 +117,7 @@ public class Example01Controller {
 		return "webpage06";
 	}
 */
+/*
 	@GetMapping("/member")
 	public String showForm(Model model){
 		Member member =new Member();
@@ -102,7 +132,7 @@ public class Example01Controller {
 		return "webpage07_01";
 		
 	}
-	
+*/	
 	@GetMapping("/form")
 	public String requestForm() {
 		return "webpage09_01";
