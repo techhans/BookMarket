@@ -5,11 +5,16 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.MatrixVariable;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,13 +23,39 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.springmvc.domain.Member;
+import com.springmvc.domain.Person;
 import com.springmvc.exception.Example03Exception;
+import com.springmvc.validator.PersonValidator;
 
-@Controller
+
 //@RequestMapping("/home")
+@Controller
 @RequestMapping("/exam03")
 public class Example03Controller {
 	
+	@Autowired
+	private PersonValidator personValidator;
+	
+	@GetMapping
+	public String showForm(Model model) {
+		model.addAttribute("person", new Person());
+		return "webpage13_03";
+	}
+	
+	@PostMapping
+	public String submit(@Valid @ModelAttribute Person person, BindingResult result) {
+		if(result.hasErrors()) {
+			return "webpage13_03";
+		}
+		return "webpage13_result";
+	}
+	
+	@InitBinder
+	protected void initBinder(WebDataBinder binder) {
+		binder.setValidator(personValidator);
+	}
+	
+/*	
 	@RequestMapping("/exam03/{bookId}")
 	public String requestMethod(@PathVariable String bookId, @MatrixVariable String category, Model model) {
 		System.out.println("[DEBUG] 도서 ID : "+bookId);
@@ -86,4 +117,5 @@ public class Example03Controller {
 		}
 		return "webpage09_submit";
 	}
+	*/
 }

@@ -12,9 +12,9 @@ public class BookIdValidator implements ConstraintValidator<BookId, String>{
     @Autowired
     private BookService bookService;
 
-    public void initialize(BookId constraintAnnotation) {  // @BookId ���� �ʱ�ȭ �޼���  
+    public void initialize(BookId constraintAnnotation) {  // @BookId 정보 초기화 메서드
     }  
-    public boolean isValid(String value, ConstraintValidatorContext context) {  // ��ȿ�� �˻� �޼���  
+    public boolean isValid(String value, ConstraintValidatorContext context) {  // 유효성 검사 메서드   
         Book book;
         try {
             book = bookService.getBookById(value);

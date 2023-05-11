@@ -1,16 +1,18 @@
 package com.springmvc.domain;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
 //import java.io.Serializable;
 
-//public class Cart implements Serializable{
-public class Cart{	
+@SuppressWarnings("serial")
+public class Cart implements Serializable{
+//public class Cart{	
 //    private static final long serialVersionUID = 2155125089108199199L;
-    private String cartId;  // ��ٱ��� ID
-    private Map<String,CartItem> cartItems; // ��ٱ��� �׸�
-    private int grandTotal;  // �Ѿ�
+    private String cartId;  // 장바구니 ID
+    private Map<String,CartItem> cartItems; // 장바구니 항목
+    private int grandTotal;  // 총액
 
     public Cart() {  
         cartItems = new HashMap<String, CartItem>();

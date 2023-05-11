@@ -9,6 +9,7 @@
 <body>
 	<h3>유효성 검사</h3>
 	<form:form modelAttribute="product" method="post">
+		<form:errors path="*" cssClass="errorBox" />
 		<p>품명 : <form:input path="name"/><form:errors path="name"/>
 		<p>가격 : <form:input path="price"/><form:errors path="price"/>
 

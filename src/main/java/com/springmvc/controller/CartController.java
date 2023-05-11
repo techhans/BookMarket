@@ -80,6 +80,7 @@ public class CartController {
     	// 장바구니 ID인 세션 ID 가져오기
         String sessionId = request.getSession(true).getId();  
         Cart cart = cartService.read(sessionId);    // 장바구니에 등록된 모든 정보 얻어 오기
+        System.out.println("[DEBUG](CartController):"+cart);
         if(cart== null)
             cart = cartService.create(new Cart(sessionId));
         	// 경로 변수 bookI에 대한 정보 얻어오기

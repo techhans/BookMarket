@@ -1,5 +1,7 @@
 package com.springmvc.domain;
 
+import java.io.Serializable;
+
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -10,18 +12,28 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.springmvc.validator.BookId;
 
-public class Book {
-	
+@SuppressWarnings("serial")
+public class Book implements Serializable{
+//    private static final long serialVersionUID = -7715651009026349175L; 
 	@BookId
-	@Pattern(regexp="ISBN[1-9]+" , message="{Pattern.NewBook.bookId}")
+	//@Pattern(regexp="ISBN[1-9]+" , message="{Pattern.NewBook.bookId}")
+
+	//@NotNull(message="{NotNull.Product.name}")
+	@Pattern(regexp="ISBN[1-9]+")
 	private String bookId;     // 도서ID
     
-	@Size(min=4, max=50, message="{Size.NewBook.name}")
+	//@Size(min=4, max=50, message="{Size.NewBook.name}")
+	
+	//@NotNull(message="{NotNull.Product.name}")
+	@Size(min=4, max=50)	
 	private String name;      // 도서명
     
-	@Min(value=0 , message="{Min.NewBook.unitPrice()}")
-	@Digits(integer=8, fraction=2, message="{Digits.NewBook.unitPrice}")
-	@NotNull(message="{NotNull.NewBook.unitPrice}")
+//	@Min(value=0 , message="{Min.NewBook.unitPrice()}")
+//	@Digits(integer=8, fraction=2, message="{Digits.NewBook.unitPrice}")
+//	@NotNull(message="{NotNull.NewBook.unitPrice}")
+	@Min(value=0)
+	@Digits(integer=8, fraction=2)
+	@NotNull	
 	private int unitPrice;      // 가격
 	
     private String author;     // 저자
@@ -31,6 +43,16 @@ public class Book {
     private long unitsInStock;  // 재고수
     private String releaseDate; // 출판일(월/년)
     private String condition;   // 신규 도서 or 중고 도서 or 전자책
+	private MultipartFile bookImage; // 도서 이미지    
+    public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	private String  fileName; 
     
     public MultipartFile getBookImage() {
 		return bookImage;
@@ -40,7 +62,7 @@ public class Book {
 		this.bookImage = bookImage;
 	}
 
-	private MultipartFile bookImage; // 도서 이미지
+
     
     
     public Book() {

@@ -14,7 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping; // add
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.MatrixVariable;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -29,7 +29,7 @@ import com.springmvc.domain.Book;
 import com.springmvc.exception.BookIdException;
 import com.springmvc.exception.CommonException;
 import com.springmvc.service.BookService;
-import com.springmvc.validator.UnitsInStockValidator;
+import com.springmvc.validator.BookValidator;
 
 
 @Controller
@@ -42,8 +42,8 @@ public class BookController {
 	// UnitsInStockValidator 인스턴스 선언
 //	private UnitsInStockValidator unitsInStockValidator;
 	@Autowired	
-	private UnitsInStockValidator unitsInStockValidator;	
-//	private BookValidator bookValidator; 
+//	private UnitsInStockValidator unitsInStockValidator;	
+	private BookValidator bookValidator; 
 	
 //	@RequestMapping(value="/books", method=RequestMethod.GET)
 	@GetMapping // modify
@@ -131,12 +131,26 @@ public class BookController {
 		if(bookImage != null && !bookImage.isEmpty()) {
 			try {
 				bookImage.transferTo(saveFile);
+				book.setFileName(saveName);
 			}catch(Exception e) {
 				throw new RuntimeException("도서 이미지 업로드가 실패함",e);
 			}
 			
 		}
-		
+        System.out.println("+++++++++++++++++++");
+        System.out.println("+++ [DEBUG][addBook] book="+book);
+        
+        System.out.println("+++ [DEBUG][addBook] book.bookId()="+book.getBookId());
+        System.out.println("+++ [DEBUG][addBook] book.name()="+book.getName());
+        System.out.println("+++ [DEBUG][addBook] book.getUnitPrice()="+book.getUnitPrice());
+        System.out.println("+++ [DEBUG][addBook] book.getAuthor()="+book.getAuthor());
+        System.out.println("+++ [DEBUG][addBook] book.getDescription()="+book.getDescription());
+        System.out.println("+++ [DEBUG][addBook] book.getPublisher()="+book.getPublisher());
+        System.out.println("+++ [DEBUG][addBook] book.getCategory()="+book.getCategory());
+        System.out.println("+++ [DEBUG][addBook] book.getUnitsInStock()="+book.getUnitsInStock());
+        System.out.println("+++ [DEBUG][addBook] book.getReleaseDate()="+book.getReleaseDate());
+        System.out.println("+++ [DEBUG][addBook] book.getCondition()="+book.getCondition());
+        System.out.println("+++ [DEBUG][addBook] book.getBookImage()="+book.getBookImage());
 		// add end		
 		bookService.setNewBook(book);
 		return "redirect:/books";
@@ -149,7 +163,8 @@ public class BookController {
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-		binder.setValidator(unitsInStockValidator); // 생성한 bookValidator 설정
+//		binder.setValidator(unitsInStockValidator); // 생성한 bookValidator 설정
+   	 	binder.setValidator(bookValidator); 		
 //		binder.setValidator(unitsInStockValidator); // 생성한 unitsInStockValidator 설정		
         binder.setAllowedFields("bookId","name","unitPrice","author", "description", 
         "publisher","category","unitsInStock","totalPages", "releaseDate", "condition", "bookImage"); 
@@ -164,5 +179,56 @@ public class BookController {
 		mav.setViewName("errorBook");
 		return mav;
 	}
+	
+	
+    @GetMapping("/update")  
+    public String getUpdateBookForm(@ModelAttribute("updateBook") Book book, @RequestParam("id") String bookId, Model model) {
+        Book bookById = bookService.getBookById(bookId);
+        model.addAttribute("book", bookById);
+        return "updateForm";
+    }  
+
+    @PostMapping("/update") 
+    public String submitUpdateBookForm(@ModelAttribute("updateBook") Book book) {
+        MultipartFile bookImage = book.getBookImage();
+        String rootDirectory = "c:/upload/";
+        if (bookImage!=null && !bookImage.isEmpty()) {
+            try {
+                String fname = bookImage.getOriginalFilename(); 
+                bookImage.transferTo(new File("c:/upload/" + fname));
+                book.setFileName(fname);
+            } catch (Exception e) {
+                throw new RuntimeException("Book Image saving failed", e);
+            }
+        }
+        System.out.println("+++++++++++++++++++");
+        System.out.println("+++ [DEBUG][submitUpdateBookForm] book="+book);
+        
+        System.out.println("+++ [DEBUG][submitUpdateBookForm] book.bookId()="+book.getBookId());
+        System.out.println("+++ [DEBUG][submitUpdateBookForm] book.name()="+book.getName());
+        System.out.println("+++ [DEBUG][submitUpdateBookForm] book.getUnitPrice()="+book.getUnitPrice());
+        System.out.println("+++ [DEBUG][submitUpdateBookForm] book.getAuthor()="+book.getAuthor());
+        System.out.println("+++ [DEBUG][submitUpdateBookForm] book.getDescription()="+book.getDescription());
+        System.out.println("+++ [DEBUG][submitUpdateBookForm] book.getPublisher()="+book.getPublisher());
+        System.out.println("+++ [DEBUG][submitUpdateBookForm] book.getCategory()="+book.getCategory());
+        System.out.println("+++ [DEBUG][submitUpdateBookForm] book.getUnitsInStock()="+book.getUnitsInStock());
+        System.out.println("+++ [DEBUG][submitUpdateBookForm] book.getReleaseDate()="+book.getReleaseDate());
+        System.out.println("+++ [DEBUG][submitUpdateBookForm] book.getCondition()="+book.getCondition());
+        System.out.println("+++ [DEBUG][submitUpdateBookForm] book.getBookImage()="+book.getBookImage());
+        
+        
+        
+        System.out.println("+++++++++++++++++++");
+        bookService.setUpdateBook(book);
+        return "redirect:/books";
+    }  
+    
+    @RequestMapping(value = "/delete") 
+    public String getDeleteBookForm(Model model, @RequestParam("id") String bookId) {
+        bookService.setDeleteBook(bookId);
+        return "redirect:/books";
+    }
+    
+    
 	
 }

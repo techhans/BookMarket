@@ -3,39 +3,49 @@ package com.springmvc.controller;
 import java.io.File;
 import java.io.IOException;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.springmvc.domain.Product;
 
 
-@Controller
+
+
 // @RequestMapping("/home")
+@Controller
 @RequestMapping("/exam01")
 public class Example01Controller {
 	
 	
 	public static Logger logger = LoggerFactory.getLogger(Example01Controller.class);
-/*	
+	
 	@GetMapping
 	public String showForm(Model model) {
 		model.addAttribute("product", new Product());
 		return "webpage13_01";
 	}
-*/	
+
+/*
 	@GetMapping
 	public String showForm(Model model) {
 
 		return "webpage14_01";
 	}
-/*	
+*/
+	
+	
+	
 	@PostMapping
 	public String submit(@Valid @ModelAttribute Product product, Errors errors) {
 		if(errors.hasErrors()) {
@@ -44,7 +54,8 @@ public class Example01Controller {
 		return "webpage13_result";
 	
 	}
-*/
+
+/*
 	@PostMapping
 	public String submit(@RequestBody String param, Model model) {
 		model.addAttribute("title", "@RequestBody로 정보 받기");
@@ -53,7 +64,7 @@ public class Example01Controller {
 		return "webpage14_result";
 	
 	}
-	
+*/	
 //	@GetMapping("/exam01")
 //	public String requestMethod(Model model) {
 //		return "webpage08_01";

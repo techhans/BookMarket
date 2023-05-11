@@ -52,7 +52,13 @@ public class BookServiceImpl implements BookService {
 		// TODO Auto-generated method stub
 		bookRepository.setNewBook(book);
 	}
-	
+	 public void setUpdateBook(Book book) {  
+	        bookRepository.setUpdateBook(book);
+	 } 
+	 
+	  public void setDeleteBook(String bookID) { 
+	        bookRepository.setDeleteBook(bookID);
+	    }
 	
 	
 	

@@ -10,6 +10,7 @@
 <title>도서 상세 정보</title>
 </head>
 <body>
+<!-- 
     <nav class="navbar navbar-expand  navbar-dark bg-dark">
         <div class="container">
             <div class="navbar-header">
@@ -22,23 +23,33 @@
             <h1 class="display-3">도서 정보</h1>
         </div>
     </div> 
-
+ -->
     <div class="container">
         <div class="row">
         	<div class="col-md-4">
         	<!-- 
         		<img src="<c:url value="/resources/images/${book.bookId}.png" />" style="width: 100%" />
  			-->
+ 			<!-- 
                 <c:choose>
                 	<c:when test="${book.getBookImage() == null}">
-                		<img src="<c:url value="c:\\upload\\${book.getBookId()}.png" />" style="width: 100%" />                		
+                		<img src="<c:url value="/upload/${book.getBookId()}.png" />" style="width: 100%" />                		
                 	</c:when>
                    	<c:otherwise>
-                		<img src="<c:url value="c:\\upload\\${book.getBookImage().getOriginalFilename()}" />" style="width: 100%" />     
+                		<img src="<c:url value="/upload/${book.getBookImage().getOriginalFilename()}" />" style="width: 100%" />     
                    	</c:otherwise>
                 
                 </c:choose>
- 			
+ 			--> 			
+                <c:choose>
+                	<c:when test="${book.getBookImage() == null}">
+                		<img src="<c:url value="C:\\upload\\${book.fileName}" />" style="width: 100%" />                		
+                	</c:when>
+                   	<c:otherwise>
+                		<img src="<c:url value="C:\\upload\\${book.fileName}" />" style="width: 100%" />     
+                   	</c:otherwise>
+                
+                </c:choose> 			        		
  			        		
         	</div>
             <div class="col-md-8">
@@ -59,13 +70,23 @@
                	 	<a href="<c:url value="/cart" />" class="btn btn-warning"> 장바구니 &raquo;</a>
                 	<a href="<c:url value="/books"/>" class="btn btn-secondary">도서 목록 &raquo;</a>
                 	
+                <sec:authorize access="isAuthenticated()"> 
+                    <a href="<c:url value="/books/update?id=${book.bookId}" />" class="btn btn-success"> 수정&raquo;</a>
+               	  <a href="<c:url value="javascript:deleteConfirm('${book.bookId}')"/>" class="btn btn-danger" > 삭제 &raquo; </a>
+                
+                </sec:authorize>                 	
+                	
+                	
+                	
 				</form:form>                	
             </div>
         </div>
         <hr>
+<!--         
         <footer>
             <p>&copy; BookMarket </p>
         </footer>
+-->        
     </div>
 </body>
 </html>

@@ -10,6 +10,7 @@
 <script src="<c:url value="/resources/js/controllers.js"/>" ></script>
 </head>
 <body>
+<!-- 
   <nav class="navbar navbar-expand  navbar-dark bg-dark">
     <div class="container">
         <div class="navbar-header">
@@ -22,7 +23,7 @@
         <h1 class="display-3">장바구니</h1>
     </div>
 </div>
-
+ -->
 <div class="container" >
     <div>
     	<form:form  name="clearForm"  method="delete">  

@@ -11,12 +11,15 @@ function removeFromCart(action) {
     document.removeForm.action = action;
     document.removeForm.submit();
     alert("도서가 장바구니에서 삭제되었습니다!");    
-//    window.location.reload();
+//    window.location.reload();    
+    
+
 }
 
 function clearCart() {
     document.clearForm.submit();
-    window.location.reload();
+    alert("모든 도서가 장바구니에서 삭제되었습니다!");    
+//    window.location.reload();
 }
 
 function deleteConfirm(id){  

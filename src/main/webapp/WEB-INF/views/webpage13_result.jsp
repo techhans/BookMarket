@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Validation Result</title>
 </head>
 <body>
-
+<h2>Validation Result</h2>
 </body>
 </html>

@@ -3,6 +3,57 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
+	
 	<!-- Root Context: defines shared resources visible to all other web components -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<!--property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property-->
+		<!--property name="url" value="jdbc:log4jdbc:mysql://localhost:3306/springbasic?useUnicode=true&amp;characterEncoding=utf8"></property-->
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<!--<property name="url" value="jdbc:mysql://localhost:3306/springbasic?useUnicode=true&amp;characterEncoding=utf8"></property>-->
+ 		<property name="url" value="jdbc:mysql://144.24.95.209:3306/test_db?serverTimezone=UTC&amp;useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8" />
+		<property name="username" value="test"></property>
+		<property name="password" value="test6538"></property>
+	</bean>
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<!--  property name="configLocation"  value="classpath:mybatis-config.xml"/> -->
+		<property name="mapperLocations" value="classpath:mapper/*Mapper.xml"/>
+	</bean>
+
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory"/>
+	</bean>
+	
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
 		
+	
+ <!-- for mysql -->
+ <!-- 
+ <bean id="dataSource"
+  class="org.apache.commons.dbcp2.BasicDataSource"
+  destroy-method="close">
+  <property name="driverClassName"
+   value="com.mysql.cj.jdbc.Driver" />
+  <property name="url"
+   value="jdbc:mysql://144.24.95.209:3306/test_db?serverTimezone=UTC&amp;useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8" />
+  <property name="username" value="test" />
+  <property name="password" value="test6538" />
+ </bean>		
+		
+ <bean id="sqlSessionFactory"
+  class="org.mybatis.spring.SqlSessionFactoryBean">
+  <property name="dataSource" ref="dataSource" />
+  <property name="mapperLocations"
+   value="classpath:/sqlmap/**/*_SQL.xml" />
+ </bean>
+ <bean id="sqlSessionTemplate"
+  class="org.mybatis.spring.SqlSessionTemplate">
+  <constructor-arg index="0" ref="sqlSessionFactory" />
+ </bean> 
+ -->
+	
 </beans>
